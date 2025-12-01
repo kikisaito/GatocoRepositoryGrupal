@@ -1,0 +1,80 @@
+.public-container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: transparent;
+  font-family: var(--font-family-primary);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper para el contenido proyectado */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* En móviles, permitir scroll vertical */
+@media (max-width: 480px) {
+  .public-container {
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: transparent !important; /* Sin fondo azul en mobile */
+  }
+
+  .content-wrapper {
+    order: 1; /* Aparecer primero en el scroll */
+    background: transparent !important; /* Sin fondo azul en mobile */
+  }
+
+  /* El slide debe aparecer después del contenido en el scroll (visualmente abajo) */
+  app-public-container app-slide {
+    order: 2;
+  }
+}
+
+/* Estilos para el contenido proyectado dentro de ng-content */
+.content-wrapper ::ng-deep > * {
+  transition: all 0.3s ease;
+  transition: margin-right 0.3s ease, width 0.3s ease, transform 0.3s ease;
+}
+
+/* Desktop: contenido ocupa 50% izquierdo cuando hay slide */
+@media (min-width: 1025px) {
+  .public-container:has(app-slide) .content-wrapper {
+    width: 50% !important;
+    margin-right: 50% !important;
+  }
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .public-container:has(app-slide) .content-wrapper {
+    width: 40% !important;
+    margin-right: 60% !important;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .public-container:has(app-slide) .content-wrapper {
+    width: 30% !important;
+    margin-right: 70% !important;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .public-container:has(app-slide) .content-wrapper {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}

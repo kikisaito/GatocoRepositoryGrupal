@@ -1,0 +1,51 @@
+<header class="header">
+    <div class="header-container">
+        <!-- Logo solo visible cuando NO está autenticado -->
+        @if (!isAuthenticated) {
+        <div class="logo">
+            <a href="#" (click)="goToHome($event)" class="logo-link">
+                <div class="logo-container">
+                    <span class="logo-icon">🐾</span>
+                    <span class="logo-text">GatoCo</span>
+                </div>
+            </a>
+        </div>
+        }
+
+        <!-- Navegación solo visible cuando NO está autenticado -->
+        @if (!isAuthenticated) {
+        <nav class="nav-section">
+            <!-- Desktop: links completos -->
+            <ul class="nav-links desktop-nav">
+                <li><a href="#" class="nav-link" (click)="onNavClick('Inicio', $event)">Inicio</a></li>
+                <li><a href="#" class="nav-link" (click)="onNavClick('Servicios', $event)">Servicios</a></li>
+                <li><a href="#" class="nav-link" (click)="onNavClick('Nosotros', $event)">Nosotros</a></li>
+                <li><a href="#" class="nav-link" (click)="onNavClick('Contactos', $event)">Contactos</a></li>
+            </ul>
+
+            <!-- Mobile: botón con flecha -->
+            <button class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+                <span class="menu-icon">☰</span>
+            </button>
+
+            <!-- Mobile: lista desplegable -->
+            @if (mobileMenuOpen) {
+            <ul class="nav-links mobile-nav">
+                <li><a href="#" class="nav-link" (click)="onNavClick('Inicio', $event)">Inicio</a></li>
+                <li><a href="#" class="nav-link" (click)="onNavClick('Servicios', $event)">Servicios</a></li>
+                <li><a href="#" class="nav-link" (click)="onNavClick('Nosotros', $event)">Nosotros</a></li>
+                <li><a href="#" class="nav-link" (click)="onNavClick('Contactos', $event)">Contactos</a></li>
+            </ul>
+            }
+        </nav>
+        }
+
+        <!-- Botones de autenticación separados -->
+        @if (!isAuthenticated) {
+        <div class="auth-section">
+            <a href="#" class="auth-button login" (click)="goToLogin($event)">Iniciar Sesión</a>
+            <a href="#" class="auth-button register" (click)="goToRegister($event)">Registrarse</a>
+        </div>
+        }
+    </div>
+</header>
