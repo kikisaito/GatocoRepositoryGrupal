@@ -1,0 +1,74 @@
+@if (isLoading()) {
+  <div class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+} @else {
+  <div class="estadisticas-grid">
+    <!-- Tarjeta: Próxima Cita (1. Más urgente - acción inmediata requerida) -->
+    <mat-card class="stat-card proxima-cita-card">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>schedule</mat-icon>
+          </div>
+          <div class="stat-info">
+            <p class="stat-label">Próxima Cita</p>
+            @if (proximaCita()) {
+              <h3 class="stat-value-small">{{ getFechaFormateada(proximaCita()!.fecha) }}</h3>
+              <p class="stat-details">{{ getHoraFormateada12h(proximaCita()!.hora) }} - {{ proximaCita()!.mascota }}</p>
+            } @else {
+              <h3 class="stat-value-small">Sin citas</h3>
+              <p class="stat-details">No hay citas programadas</p>
+            }
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tarjeta: Citas Pendientes (2. Información relacionada y de contexto inmediato) -->
+    <mat-card class="stat-card citas-pendientes-card">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>event</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value">{{ citasPendientes() }}</h3>
+            <p class="stat-label">Citas Pendientes</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tarjeta: Total de Mascotas (3. Información de contexto general) -->
+    <mat-card class="stat-card mascotas-card">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>pets</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value">{{ totalMascotas() }}</h3>
+            <p class="stat-label">Mascotas Registradas</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Tarjeta: Citas Completadas (4. Información histórica - menos relevante para acciones inmediatas) -->
+    <mat-card class="stat-card citas-completadas-card">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value">{{ citasCompletadas() }}</h3>
+            <p class="stat-label">Citas Completadas</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}
+

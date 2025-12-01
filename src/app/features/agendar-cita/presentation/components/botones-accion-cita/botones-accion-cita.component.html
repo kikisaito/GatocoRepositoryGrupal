@@ -1,0 +1,33 @@
+<div class="botones-accion-container">
+  <div class="botones-section">
+    @if (mostrarAtras) {
+      <button 
+        mat-raised-button 
+        color="basic" 
+        (click)="onAtras()"
+        class="btn-atras">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Atrás</span>
+      </button>
+    }
+    
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="onSiguiente()"
+      class="btn-siguiente">
+      <span>{{ textoSiguiente }}</span>
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+    
+    <button 
+      mat-button 
+      color="warn" 
+      (click)="onCancelar()"
+      class="btn-cancelar">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+  </div>
+</div>
+

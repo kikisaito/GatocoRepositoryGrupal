@@ -1,0 +1,20 @@
+<div class="filtro-mascotas-container">
+  @if (isLoading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="24"></mat-spinner>
+      <span>{{ textoCargando() }}</span>
+    </div>
+  } @else {
+    <mat-form-field appearance="outline" class="filtro-field">
+      <mat-label>{{ labelFiltro() }}</mat-label>
+      <mat-icon matPrefix>pets</mat-icon>
+      <mat-select [(ngModel)]="mascotaSeleccionadaValue" (ngModelChange)="onMascotaChange($event)">
+        <mat-option [value]="null">{{ textoTodos() }}</mat-option>
+        @for (mascota of mascotasNombresSignal(); track mascota) {
+          <mat-option [value]="mascota">{{ mascota }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+</div>
+

@@ -1,0 +1,82 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <mat-card class="modal-container" (click)="$event.stopPropagation()">
+    @if (mascota) {
+      <mat-card-header class="modal-header">
+        <div class="header-content">
+          @if (mascota.foto) {
+            <img [src]="mascota.foto" [alt]="mascota.nombre" class="mascota-photo" />
+          } @else {
+            <mat-icon class="mascota-icon">pets</mat-icon>
+          }
+          <mat-card-title class="modal-title">{{ mascota.nombre }}</mat-card-title>
+        </div>
+      </mat-card-header>
+      
+      <mat-card-content class="modal-body">
+        <div class="detalles-list">
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">pets</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Especie</span>
+              <span class="detalle-value">{{ mascota.especie }}</span>
+            </div>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">label</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Raza</span>
+              <span class="detalle-value">{{ mascota.raza || 'No especificada' }}</span>
+            </div>
+          </div>
+          
+          @if (mascota.edad) {
+            <mat-divider></mat-divider>
+            <div class="detalle-item">
+              <mat-icon class="detalle-icon">cake</mat-icon>
+              <div class="detalle-content">
+                <span class="detalle-label">Edad</span>
+                <span class="detalle-value">{{ mascota.edad }} años</span>
+              </div>
+            </div>
+          }
+          
+          <mat-divider></mat-divider>
+          
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">{{ mascota.sexo === 'macho' ? 'male' : mascota.sexo === 'hembra' ? 'female' : 'help_outline' }}</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Sexo</span>
+              <span class="detalle-value">{{ mascota.sexo || 'No especificado' }}</span>
+            </div>
+          </div>
+          
+          @if (mascota.fechaNacimiento) {
+            <mat-divider></mat-divider>
+            <div class="detalle-item">
+              <mat-icon class="detalle-icon">calendar_today</mat-icon>
+              <div class="detalle-content">
+                <span class="detalle-label">Fecha de Nacimiento</span>
+                <span class="detalle-value">{{ getFechaFormateada(mascota.fechaNacimiento) }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions class="modal-footer">
+        <button mat-button color="basic" (click)="onCancelar()">
+          <mat-icon>close</mat-icon>
+          <span>Cancelar</span>
+        </button>
+        <button mat-raised-button color="primary" (click)="onConfirmar()">
+          <mat-icon>check</mat-icon>
+          <span>Confirmar</span>
+        </button>
+      </mat-card-actions>
+    }
+  </mat-card>
+</div>
+

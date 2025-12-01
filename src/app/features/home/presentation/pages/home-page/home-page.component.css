@@ -1,0 +1,115 @@
+/* Estilos para el contenido de la home page */
+
+.home-content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+  padding-top: 100px; /* Espacio para el header */
+  box-sizing: border-box; /* Asegurar que el padding se incluya en el cálculo de altura */
+  transition: all 0.3s ease;
+}
+
+/* Cuando la pantalla es muy pequeña, centrar el contenido */
+@media (max-width: 480px) {
+  .home-content {
+    justify-content: center !important;
+    padding: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 70px !important;
+    padding-bottom: 2rem !important;
+    background: transparent !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    order: 1; /* Aparecer primero en el scroll */
+  }
+}
+
+/* Cuando el slide está presente en el HomeContainer */
+:host-context(app-public-container) app-slide + * .home-content,
+:host-context(.public-container:has(app-slide)) .home-content {
+  width: 50%;
+  margin-right: 50%;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  :host-context(app-public-container) app-slide + * .home-content,
+  :host-context(.public-container:has(app-slide)) .home-content {
+    width: 40%;
+    margin-right: 60%;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  :host-context(app-public-container) app-slide + * .home-content,
+  :host-context(.public-container:has(app-slide)) .home-content {
+    width: 30%;
+    margin-right: 70%;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  :host-context(app-public-container) app-slide + * .home-content,
+  :host-context(.public-container:has(app-slide)) .home-content {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
+
+.text-content {
+  text-align: left;
+  max-width: 100%;
+  width: 100%;
+}
+
+.home-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(var(--spacing-md), 2vw, var(--spacing-lg));
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .home-content {
+    padding: 2rem;
+    padding-top: 100px;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 1rem;
+    padding-top: 80px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .text-content {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .home-image {
+    padding: clamp(var(--spacing-sm), 1.5vw, var(--spacing-md));
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .home-content {
+    padding: 0.75rem;
+    padding-top: 70px;
+  }
+}

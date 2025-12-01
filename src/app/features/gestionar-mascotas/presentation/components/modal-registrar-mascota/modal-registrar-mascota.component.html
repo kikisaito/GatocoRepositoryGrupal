@@ -1,0 +1,69 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Registrar Nueva Mascota</h3>
+      <button class="close-button" (click)="onCancelar()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <form name="registrarMascotaForm" (ngSubmit)="onConfirmar()">
+        <div class="form-group">
+          <label>Nombre *</label>
+          <input 
+            type="text" 
+            class="input-field" 
+            name="nombre"
+            [(ngModel)]="mascotaData.nombre"
+            placeholder="Nombre de la mascota">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Especie *</label>
+            <input 
+              type="text" 
+              class="input-field" 
+              name="especie"
+              [(ngModel)]="mascotaData.especie"
+              placeholder="Ej: Perro, Gato">
+          </div>
+          <div class="form-group">
+            <label>Raza *</label>
+            <input 
+              type="text" 
+              class="input-field" 
+              name="raza"
+              [(ngModel)]="mascotaData.raza"
+              placeholder="Ej: Golden Retriever">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Fecha de Nacimiento *</label>
+            <input 
+              type="date" 
+              class="input-field" 
+              name="fechaNacimiento"
+              [(ngModel)]="mascotaData.fechaNacimiento"
+              [max]="getToday()">
+          </div>
+          <div class="form-group">
+            <label>Sexo *</label>
+            <select class="input-field" name="sexo" [(ngModel)]="mascotaData.sexo">
+              @for (opcion of opcionesSexo; track opcion.value) {
+                <option [value]="opcion.value" [disabled]="opcion.value === ''">{{ opcion.label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onCancelar()">Cancelar</button>
+      <button class="btn-confirm" (click)="onConfirmar()" [disabled]="!esFormValid()">Registrar</button>
+    </div>
+  </div>
+</div>
+

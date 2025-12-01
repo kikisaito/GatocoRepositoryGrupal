@@ -1,0 +1,56 @@
+<app-auth-container>
+  <div class="page-header">
+    <app-page-header 
+      title="Gestionar Mascotas"
+      subtitle="Administra tus mascotas registradas">
+    </app-page-header>
+  </div>
+
+  <div class="gestionar-mascotas-content">
+    <!-- Lista de mascotas siempre visible -->
+    <app-lista-mascotas-gestion
+      [mascotas]="mascotas()"
+      [isLoading]="isLoading()"
+      [error]="error()"
+      [mascotasConCitas]="mascotasConCitas()"
+      (iniciarEdicion)="onIniciarEdicion($event)"
+      (confirmarEliminar)="onConfirmarEliminar($event)">
+    </app-lista-mascotas-gestion>
+
+    <!-- Modal de editar mascota -->
+    @if (mostrarModalEditar()) {
+      <app-modal-editar-mascota
+        [mascota]="mascotaEditando()"
+        [error]="error()"
+        (confirmar)="onActualizarMascota($event.id, $event.datos)"
+        (cancelar)="onCancelarEdicion()"
+        (subirFoto)="onSubirFoto($event.id, $event.file)"
+        (eliminarFoto)="onEliminarFoto($event)">
+      </app-modal-editar-mascota>
+    }
+
+    <!-- Modal de confirmación de eliminación -->
+    @if (mostrarModalEliminar()) {
+      <app-modal-confirmacion-eliminar
+        [mascota]="mascotaAEliminar()"
+        [error]="error()"
+        (confirmar)="onEliminarMascota($event)"
+        (cancelar)="onCancelarEliminacion()">
+      </app-modal-confirmacion-eliminar>
+    }
+
+    <!-- Modal de registrar nueva mascota -->
+    @if (mostrarModalRegistrar()) {
+      <app-modal-registrar-mascota
+        (confirmar)="onRegistrarMascota($event)"
+        (cancelar)="onCerrarModalRegistrar()">
+      </app-modal-registrar-mascota>
+    }
+
+    <!-- Botón de acción flotante para agregar nueva mascota -->
+    <button mat-fab color="primary" class="fab-button" (click)="onAbrirModalRegistrar()" title="Registrar nueva mascota">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</app-auth-container>
+

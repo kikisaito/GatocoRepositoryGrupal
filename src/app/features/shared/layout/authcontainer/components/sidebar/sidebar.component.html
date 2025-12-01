@@ -1,0 +1,38 @@
+<div class="sidebar" [class.sidebar-open]="mobileMenuOpen" [class.is-cliente]="currentUser?.role === 'cliente'" [class.is-veterinario]="currentUser?.role === 'veterinario'">
+  <div class="sidebar-content">
+    <!-- Información del usuario en la parte superior -->
+    @if (currentUser) {
+      <div class="user-info">
+        <div class="user-details">
+          <h3 class="user-name">{{ currentUser.fullName }}</h3>
+          <p class="user-role">{{ getUserRoleDisplay() }}</p>
+        </div>
+      </div>
+    }
+    
+    <!-- Contenido principal del sidebar (navegación) -->
+    @if (shouldShowMenu()) {
+      <div class="sidebar-main">
+        <nav class="navigation-menu">
+          <ul class="menu-list">
+            @for (item of menuItems; track item.path) {
+              <li class="menu-item">
+                <a class="menu-link" [class.active]="isActiveRoute(item.path)" (click)="navigateTo(item.path)">
+                  <span class="menu-text">{{ item.label }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+      </div>
+    }
+  </div>
+  
+  <!-- Footer del sidebar con botón de logout -->
+  <div class="sidebar-footer">
+    <button class="logout-button" (click)="logout()">
+      Cerrar Sesión
+    </button>
+  </div>
+</div>
+

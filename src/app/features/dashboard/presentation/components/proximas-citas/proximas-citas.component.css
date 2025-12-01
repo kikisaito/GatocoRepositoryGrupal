@@ -1,0 +1,199 @@
+.proximas-citas-container {
+  background: var(--color-bg-primary);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  height: fit-content;
+  border: 1px solid var(--color-gray-200);
+}
+
+.titulo-seccion {
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-bottom: 0.75rem;
+}
+
+.citas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 500px; /* Misma altura que mascotas registradas */
+  overflow-y: auto; /* Scroll vertical cuando hay más de 3 citas */
+  padding-right: 8px; /* Espacio para el scrollbar */
+}
+
+/* Estilos para el scrollbar personalizado */
+.citas-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.citas-list::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: 3px;
+}
+
+.citas-list::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+.citas-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Estilos para Firefox */
+.citas-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-bg-secondary);
+}
+
+.cita-item {
+  background: var(--color-bg-secondary);
+  border-radius: 6px;
+  padding: 1.25rem;
+  border-left: 3px solid var(--color-primary);
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.cita-item:hover {
+  background: var(--color-bg-primary);
+}
+
+.cita-item:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.cita-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.cita-fecha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fecha {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.hora {
+  color: #7f8c8d;
+  font-size: 0.8rem;
+}
+
+.estado {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.estado-confirmada {
+  background-color: rgba(5, 150, 105, 0.08);
+  color: var(--color-success);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.estado-pendiente {
+  background-color: rgba(217, 119, 6, 0.08);
+  color: var(--color-warning);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.estado-cancelada {
+  background-color: rgba(220, 38, 38, 0.08);
+  color: var(--color-error);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.cita-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mascota-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mascota-nombre {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.servicio {
+  color: #7f8c8d;
+  font-size: 0.85rem;
+}
+
+.veterinario {
+  text-align: right;
+}
+
+.vet-nombre {
+  color: #3498db;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.sin-citas {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+}
+
+.sin-citas p {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .proximas-citas-container {
+    padding: 1rem;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.25rem;
+  }
+  
+  .citas-list {
+    max-height: 450px; /* Misma altura que mascotas registradas en móviles */
+  }
+  
+  .cita-item {
+    padding: 0.75rem;
+  }
+  
+  .cita-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .cita-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .veterinario {
+    text-align: left;
+  }
+}

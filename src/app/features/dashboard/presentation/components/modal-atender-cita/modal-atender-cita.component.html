@@ -1,0 +1,107 @@
+<div class="modal-overlay" (click)="onCerrar()">
+  <mat-card class="modal-container" (click)="$event.stopPropagation()">
+    <mat-card-header class="modal-header">
+      <mat-card-title class="modal-title">Datos del paciente</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content class="modal-body">
+      @if (isLoadingMascota()) {
+        <div class="loading-mascota">
+          <p>Cargando datos del paciente...</p>
+        </div>
+      } @else if (mascota() && cita) {
+        <form [formGroup]="atenderForm">
+          <!-- Foto del paciente -->
+          @if (mascota()?.foto) {
+            <div class="mascota-photo-container">
+              <img [src]="mascota()!.foto!" [alt]="mascota()!.nombre" class="mascota-photo-large" />
+            </div>
+          }
+          <!-- Datos del paciente -->
+          <div class="datos-paciente">
+            <div class="datos-row">
+              <div class="dato-item">
+                <label class="dato-label">Nombre:</label>
+                <span class="dato-value">{{ mascota()?.nombre }}</span>
+              </div>
+              <div class="dato-item">
+                <label class="dato-label">Edad:</label>
+                <span class="dato-value">{{ getEdad() }}</span>
+              </div>
+            </div>
+            
+            <div class="datos-row">
+              <div class="dato-item">
+                <label class="dato-label">Especie:</label>
+                <span class="dato-value">{{ mascota()?.especie }}</span>
+              </div>
+              <div class="dato-item">
+                <label class="dato-label">Sexo:</label>
+                <span class="dato-value">{{ mascota()?.sexo === 'macho' ? 'Macho' : 'Hembra' }}</span>
+              </div>
+            </div>
+            
+            <div class="datos-row">
+              <div class="dato-item">
+                <label class="dato-label">Raza:</label>
+                <span class="dato-value">{{ mascota()?.raza || 'No especificada' }}</span>
+              </div>
+              <div class="dato-item">
+                <label class="dato-label">Propietario:</label>
+                <span class="dato-value">{{ cita.cliente }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Diagnóstico -->
+          <div class="form-section">
+            <h3 class="section-title">Diagnóstico</h3>
+            <mat-form-field appearance="outline" class="full-width">
+              <textarea 
+                matInput 
+                formControlName="diagnostico"
+                placeholder="Describe el diagnóstico clínico..."
+                rows="5"
+                class="diagnostico-textarea"></textarea>
+              @if (atenderForm.get('diagnostico')?.hasError('required') && atenderForm.get('diagnostico')?.touched) {
+                <mat-error>El diagnóstico es requerido</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          
+          <!-- Tratamiento -->
+          <div class="form-section">
+            <h3 class="section-title">Tratamiento</h3>
+            <mat-form-field appearance="outline" class="full-width">
+              <textarea 
+                matInput 
+                formControlName="tratamiento"
+                placeholder="Indica medicamentos, dosis y duración..."
+                rows="5"
+                class="tratamiento-textarea"></textarea>
+              @if (atenderForm.get('tratamiento')?.hasError('required') && atenderForm.get('tratamiento')?.touched) {
+                <mat-error>El tratamiento es requerido</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </form>
+      }
+    </mat-card-content>
+    
+    <mat-card-actions class="modal-footer">
+      <button mat-button color="basic" (click)="onCerrar()" [disabled]="isLoading()">
+        <mat-icon>close</mat-icon>
+        <span>Cerrar</span>
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        (click)="onGuardar()" 
+        [disabled]="!atenderForm.valid || isLoading() || isLoadingMascota()">
+        <mat-icon>save</mat-icon>
+        <span>Guardar</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

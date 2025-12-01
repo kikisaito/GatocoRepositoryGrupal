@@ -1,0 +1,109 @@
+<div class="modal-overlay" (click)="onCerrar()">
+  <mat-card class="modal-container" (click)="$event.stopPropagation()">
+    <mat-card-header class="modal-header">
+      <mat-card-title class="modal-title">Detalles de la Consulta</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content class="modal-body">
+      @if (cita) {
+        <!-- Información de la cita -->
+        <div class="info-section">
+          <h3 class="section-title">Información de la Cita</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Fecha:</span>
+              <span class="info-value">{{ cita.fecha }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Hora:</span>
+              <span class="info-value">{{ cita.hora }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Servicio:</span>
+              <span class="info-value">{{ cita.servicio }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Veterinario:</span>
+              <span class="info-value">{{ cita.veterinario }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Información de la mascota al momento de la consulta -->
+        <mat-divider></mat-divider>
+        <div class="info-section">
+          <h3 class="section-title">Información del Paciente (al momento de la consulta)</h3>
+          @if (cita.mascotaFoto) {
+            <div class="mascota-photo-container">
+              <img [src]="cita.mascotaFoto" [alt]="cita.informacionMascota?.nombre || cita.mascota" class="mascota-photo-large" />
+            </div>
+          }
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Nombre:</span>
+              <span class="info-value">{{ cita.informacionMascota?.nombre || cita.mascota }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Edad:</span>
+              <span class="info-value">{{ getEdadMascota() }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Dueño:</span>
+              <span class="info-value">{{ cita.cliente }}</span>
+            </div>
+            @if (cita.informacionMascota) {
+              <div class="info-item">
+                <span class="info-label">Especie:</span>
+                <span class="info-value">{{ cita.informacionMascota.especie }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Sexo:</span>
+                <span class="info-value">{{ cita.informacionMascota.sexo === 'macho' ? 'Macho' : 'Hembra' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Raza:</span>
+                <span class="info-value">{{ cita.informacionMascota.raza || 'No especificada' }}</span>
+              </div>
+              @if (cita.informacionMascota.fechaNacimiento) {
+                <div class="info-item">
+                  <span class="info-label">Fecha de Nacimiento:</span>
+                  <span class="info-value">{{ cita.informacionMascota.fechaNacimiento }}</span>
+                </div>
+              }
+            }
+          </div>
+        </div>
+        
+        <!-- Diagnóstico -->
+        @if (cita.diagnostico) {
+          <mat-divider></mat-divider>
+          <div class="info-section">
+            <h3 class="section-title">Diagnóstico</h3>
+            <div class="text-content">
+              <p>{{ cita.diagnostico }}</p>
+            </div>
+          </div>
+        }
+        
+        <!-- Tratamiento -->
+        @if (cita.tratamiento) {
+          <mat-divider></mat-divider>
+          <div class="info-section">
+            <h3 class="section-title">Tratamiento</h3>
+            <div class="text-content">
+              <p>{{ cita.tratamiento }}</p>
+            </div>
+          </div>
+        }
+      }
+    </mat-card-content>
+    
+    <mat-card-actions class="modal-footer">
+      <button mat-raised-button color="primary" (click)="onCerrar()">
+        <mat-icon>close</mat-icon>
+        <span>Cerrar</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

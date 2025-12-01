@@ -1,0 +1,451 @@
+/* ===========================================
+   SIDEBAR COMPONENT - MODERN DESIGN
+   =========================================== */
+
+.sidebar {
+  width: 300px;
+  height: 100%;
+  margin-top: 0;
+  background: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: 1px solid var(--color-primary-darker);
+  flex-shrink: 0;
+  z-index: 1000;
+}
+
+/* Color celeste para clientes */
+.sidebar.is-cliente {
+  background: #4A8FA8; /* Celeste más oscuro */
+  border-right: 1px solid #3A7A8F; /* Celeste aún más oscuro para el borde */
+}
+
+/* Color azul marino para veterinarios */
+.sidebar.is-veterinario {
+  background: #1e3a8a; /* Azul marino */
+  border-right: 1px solid #1e40af; /* Azul marino más oscuro para el borde */
+}
+
+/* En móviles: sidebar siempre oculto */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 50vw !important; /* 50% del ancho de la pantalla del dispositivo */
+    height: 100vh !important;
+    left: -100vw !important; /* Completamente oculto fuera de la pantalla izquierda */
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease, opacity 0.3s ease;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: fixed !important;
+    top: 0 !important;
+  }
+
+  /* Cuando el menú está abierto, mostrar desde la izquierda (borde de pantalla) */
+  .sidebar.sidebar-open {
+    left: 0 !important; /* Aparece desde el borde izquierdo de la pantalla */
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 1000 !important;
+  }
+}
+
+.sidebar-content {
+  flex: 1;
+  padding: 0;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+}
+
+/* Asegurar que los links tengan espacio */
+.sidebar-main {
+  margin-top: 0;
+}
+
+.navigation-menu {
+  /* Sin estilos especiales */
+}
+
+
+/* Información del usuario */
+.user-info {
+  width: 100%;
+  text-align: left; /* Alineado a la izquierda */
+  margin-bottom: 2rem;
+  padding: 0;
+  padding-left: 2rem;
+  padding-top: 1.5rem;
+  background: transparent;
+  border: none;
+  position: relative;
+  padding-bottom: 0;
+  height: 130px; /* Altura fija para alinear con auth-header */
+}
+
+/* Línea delgada blanca después del user-info */
+.user-info::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+  width: calc(100% - 4rem);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: 1px solid transparent;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.menu-item:not(:last-child)::after {
+  display: none;
+}
+
+.user-avatar {
+  margin-bottom: 1rem;
+}
+
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 auto;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-details h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.user-details p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.user-role {
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.user-email {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Navegación */
+.sidebar-main {
+  flex: 1;
+  width: 100%;
+}
+
+.navigation-menu {
+  width: 100%;
+  padding: 0;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.menu-item {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 0;
+  transition: background-color 0.15s ease;
+  background: transparent;
+  border-left: 3px solid transparent;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.menu-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.menu-link.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-left-color: white;
+  font-weight: 600;
+}
+
+.menu-link:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.menu-icon {
+  font-size: 1.25rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.menu-text {
+  font-size: 1rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* Footer del sidebar */
+.sidebar-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--color-error);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.logout-button:hover {
+  background: #b91c1c;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 280px;
+    height: 100%;
+    margin-top: 0;
+  }
+  
+  .sidebar-content {
+    padding: 1.5rem;
+  }
+  
+  .user-info {
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+  }
+  
+  .avatar-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+  
+  .user-details h3 {
+    font-size: 1.125rem;
+  }
+  
+  .menu-link {
+    padding: 0.875rem 1.25rem;
+  }
+  
+  .menu-icon {
+    font-size: 1.25rem;
+  }
+  
+  .menu-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 260px;
+    height: 100%;
+    margin-top: 0;
+  }
+  
+  .sidebar-content {
+    padding: 1.25rem;
+  }
+  
+  .user-info {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .avatar-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .user-details h3 {
+    font-size: 1rem;
+  }
+  
+  .user-details p {
+    font-size: 0.8rem;
+  }
+  
+  .menu-link {
+    padding: 0.75rem 1rem;
+  }
+  
+  .menu-icon {
+    font-size: 1.125rem;
+  }
+  
+  .menu-text {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 240px;
+    height: 100%;
+    margin-top: 0;
+  }
+  
+  .sidebar-content {
+    padding: 0;
+    padding-top: 12rem;
+  }
+  
+  .sidebar-main {
+    margin-top: 5rem;
+  }
+  
+  .navigation-menu {
+    margin-top: 1rem;
+  }
+  
+  .user-info {
+    margin-bottom: 1.25rem;
+    padding: 0.875rem;
+  }
+  
+  .avatar-circle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .user-details h3 {
+    font-size: 0.9rem;
+  }
+  
+  .user-details p {
+    font-size: 0.75rem;
+  }
+  
+  .menu-link {
+    padding: 0.625rem 0.875rem;
+  }
+  
+  .menu-icon {
+    font-size: 1rem;
+  }
+  
+  .menu-text {
+    font-size: 0.8rem;
+  }
+  
+  .logout-button {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 220px;
+    height: 100%;
+    margin-top: 0;
+  }
+  
+  .sidebar-content {
+    padding: 0.875rem;
+  }
+  
+  .user-info {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .avatar-circle {
+    width: 45px;
+    height: 45px;
+    font-size: 1.125rem;
+  }
+  
+  .user-details h3 {
+    font-size: 0.875rem;
+  }
+  
+  .user-details p {
+    font-size: 0.7rem;
+  }
+  
+  .menu-link {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .menu-icon {
+    font-size: 0.9rem;
+  }
+  
+  .menu-text {
+    font-size: 0.75rem;
+  }
+  
+  .logout-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+

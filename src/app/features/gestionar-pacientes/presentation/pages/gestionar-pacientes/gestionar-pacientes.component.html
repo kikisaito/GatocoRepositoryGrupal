@@ -1,0 +1,121 @@
+<app-auth-container>
+  <div class="page-header">
+    <app-page-header 
+      title="Gestionar Pacientes" 
+      subtitle="Información de las mascotas de tus citas">
+    </app-page-header>
+  </div>
+  
+  <div class="gestionar-pacientes-content">
+    @if (isLoading()) {
+      <div class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Cargando pacientes...</p>
+      </div>
+    } @else if (error()) {
+      <div class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ error() }}</p>
+      </div>
+    } @else if (dataSource.data.length === 0) {
+      <div class="sin-pacientes">
+        <mat-icon>pets</mat-icon>
+        <p>No hay pacientes registrados</p>
+      </div>
+    } @else {
+      <mat-card class="pacientes-table-card">
+        <mat-card-content>
+          <table mat-table [dataSource]="dataSource" class="pacientes-table">
+            <!-- Paciente Column -->
+            <ng-container matColumnDef="paciente">
+              <th mat-header-cell *matHeaderCellDef>Paciente</th>
+              <td mat-cell *matCellDef="let row">
+                <div class="paciente-cell">
+                  @if (row.paciente.foto) {
+                    <img [src]="row.paciente.foto" [alt]="row.nombre" class="paciente-photo" />
+                  } @else {
+                    <mat-icon class="paciente-icon">pets</mat-icon>
+                  }
+                  <span>{{ row.nombre }}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Especie Column -->
+            <ng-container matColumnDef="especie">
+              <th mat-header-cell *matHeaderCellDef>Especie</th>
+              <td mat-cell *matCellDef="let row">{{ row.especie }}</td>
+            </ng-container>
+
+            <!-- Propietario Column -->
+            <ng-container matColumnDef="propietario">
+              <th mat-header-cell *matHeaderCellDef>Propietario</th>
+              <td mat-cell *matCellDef="let row">
+                <div class="propietario-cell">
+                  <mat-icon class="propietario-icon">person</mat-icon>
+                  <span>{{ row.propietario }}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Acciones Column -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="abrirFicha(row.paciente)">
+                    <mat-icon>visibility</mat-icon>
+                    <span>Ver ficha</span>
+                  </button>
+                  <button mat-menu-item (click)="abrirAgendarCita(row.paciente)">
+                    <mat-icon>event</mat-icon>
+                    <span>Agendar cita</span>
+                  </button>
+                  <button mat-menu-item (click)="abrirHistorialCitas(row.paciente)">
+                    <mat-icon>history</mat-icon>
+                    <span>Historial de citas</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</app-auth-container>
+
+<!-- Modal Ficha Paciente -->
+@if (mostrarModalFicha() && pacienteSeleccionado) {
+  <app-modal-ficha-paciente
+    [paciente]="pacienteSeleccionado"
+    [duenoNombre]="getNombreDueno(pacienteSeleccionado.duenoId)"
+    [citasCount]="getCitasPorMascota(pacienteSeleccionado.id).length"
+    (cerrar)="cerrarFicha()">
+  </app-modal-ficha-paciente>
+}
+
+<!-- Modal Agendar Cita -->
+@if (mostrarModalAgendarCita() && pacienteSeleccionado) {
+  <app-modal-agendar-cita
+    [paciente]="pacienteSeleccionado"
+    (citaCreada)="onCitaCreada()"
+    (cerrar)="cerrarAgendarCita()">
+  </app-modal-agendar-cita>
+}
+
+<!-- Modal Historial de Citas -->
+@if (mostrarModalHistorialCitas() && pacienteSeleccionado) {
+  <app-modal-historial-citas
+    [paciente]="pacienteSeleccionado"
+    [citas]="getCitasFiltradasPorMascota(pacienteSeleccionado.id)"
+    (cerrar)="cerrarHistorialCitas()">
+  </app-modal-historial-citas>
+}
+

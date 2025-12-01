@@ -1,0 +1,194 @@
+.resumen-cita-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* Cambiar de hidden a visible para que el contenido no se corte */
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0; /* Asegurar que no haya margen adicional */
+}
+
+::ng-deep .resumen-cita-container .mat-mdc-card-header {
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .resumen-cita-container .mat-mdc-card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+::ng-deep .resumen-cita-container .mat-mdc-card-content {
+  padding: 16px 24px; /* Reducir padding vertical */
+}
+
+.resumen-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px; /* Reducir gap entre columnas */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  align-items: start; /* Alinear al inicio para que ambas columnas empiecen en la misma altura */
+  overflow: hidden; /* Prevenir desbordamiento */
+}
+
+.resumen-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Reducir gap entre secciones */
+  height: 100%; /* Asegurar que la columna ocupe toda la altura disponible */
+  min-width: 0; /* Permitir que el contenido se ajuste */
+  max-width: 100%; /* Prevenir desbordamiento */
+  box-sizing: border-box;
+  overflow: hidden; /* Prevenir desbordamiento */
+}
+
+.right-column {
+  justify-content: flex-start; /* Alinear contenido al inicio */
+}
+
+.right-column .resumen-section {
+  flex: 1; /* Hacer que la sección ocupe todo el espacio disponible */
+  min-height: 100%; /* Asegurar altura mínima igual a la columna izquierda */
+  max-width: 100%; /* Prevenir desbordamiento */
+  overflow: hidden; /* Prevenir desbordamiento */
+  height: 100%; /* Ocupar toda la altura disponible */
+}
+
+.resumen-section {
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 16px; /* Reducir padding */
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  min-width: 0; /* Permitir que el contenido se ajuste */
+  max-width: 100%; /* Prevenir desbordamiento */
+  overflow: hidden; /* Prevenir desbordamiento */
+}
+
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px; /* Reducir margen inferior */
+  padding-bottom: 8px; /* Reducir padding inferior */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.section-header mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #3f51b5;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Reducir gap entre filas */
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 0; /* Reducir padding vertical */
+}
+
+.info-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: rgba(0, 0, 0, 0.54);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 400;
+  word-wrap: break-word; /* Permitir que el texto largo se ajuste */
+  overflow-wrap: break-word; /* Prevenir desbordamiento de texto */
+  max-width: 100%; /* Prevenir desbordamiento */
+}
+
+.info-incompleta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 16px;
+  min-height: 200px;
+  text-align: center;
+}
+
+.info-incompleta mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.info-incompleta p {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  ::ng-deep .resumen-cita-container .mat-mdc-card-header {
+    padding: 16px;
+  }
+
+  ::ng-deep .resumen-cita-container .mat-mdc-card-content {
+    padding: 16px;
+  }
+
+  .resumen-table {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .resumen-section {
+    padding: 16px;
+  }
+
+  .section-header {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  .section-content {
+    gap: 12px;
+  }
+}

@@ -1,0 +1,114 @@
+.home-buttons-container {
+  display: flex;
+  gap: clamp(var(--spacing-sm), 2vw, var(--spacing-md));
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: clamp(var(--spacing-sm), 2.5vw, var(--spacing-md)) clamp(var(--spacing-lg), 4vw, var(--spacing-2xl));
+  border: none;
+  border-radius: var(--border-radius-lg);
+  font-family: var(--font-family-primary);
+  font-size: clamp(var(--font-size-sm), 2.2vw, var(--font-size-lg));
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-width: clamp(120px, 15vw, 150px);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-normal);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-login {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+}
+
+.btn-login:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-darker) 100%);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
+
+.btn-register {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: var(--color-white);
+}
+
+.btn-register:hover {
+  background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary-darker) 100%);
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+}
+
+/* Responsive para pantallas medianas */
+@media (max-width: 1024px) {
+  .btn {
+    min-width: clamp(110px, 14vw, 140px);
+  }
+}
+
+/* Responsive para tablets */
+@media (max-width: 900px) {
+  .btn {
+    min-width: clamp(100px, 13vw, 130px);
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .home-buttons-container {
+    justify-content: center;
+    gap: clamp(var(--spacing-xs), 1.5vw, var(--spacing-sm));
+  }
+  
+  .btn {
+    min-width: clamp(90px, 12vw, 120px);
+    padding: clamp(var(--spacing-xs), 2vw, var(--spacing-sm)) clamp(var(--spacing-md), 3vw, var(--spacing-xl));
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .home-buttons-container {
+    flex-direction: column;
+    gap: clamp(var(--spacing-xs), 1vw, var(--spacing-sm));
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 200px;
+    min-width: auto;
+  }
+}

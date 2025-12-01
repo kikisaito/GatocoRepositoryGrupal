@@ -1,0 +1,88 @@
+<div class="modal-overlay" (click)="onCerrar()">
+  <mat-card class="modal-container" (click)="$event.stopPropagation()">
+    @if (paciente) {
+      <mat-card-header class="modal-header">
+        <div class="header-content">
+          <mat-icon class="historial-icon">history</mat-icon>
+          <div class="header-text">
+            <mat-card-title class="modal-title">Historial de Citas</mat-card-title>
+            <mat-card-subtitle class="modal-subtitle">{{ paciente.nombre }}</mat-card-subtitle>
+          </div>
+        </div>
+      </mat-card-header>
+      
+      <mat-card-content class="modal-body">
+        @if (citasFiltradas().length === 0) {
+          <div class="sin-citas">
+            <mat-icon>event_busy</mat-icon>
+            <p>No hay citas completadas o canceladas para este paciente</p>
+          </div>
+        } @else {
+          <div class="citas-list">
+            @for (cita of citasFiltradas(); track cita.id) {
+              <div class="cita-item">
+                <div class="cita-header">
+                  <div class="cita-fecha-hora">
+                    <div class="fecha-item">
+                      <mat-icon class="fecha-icon">calendar_today</mat-icon>
+                      <span class="fecha-text">{{ getFechaFormateada(cita.fecha) }}</span>
+                    </div>
+                    <div class="hora-item">
+                      <mat-icon class="hora-icon">schedule</mat-icon>
+                      <span class="hora-text">{{ getHoraFormateada12h(cita.hora) }}</span>
+                    </div>
+                  </div>
+                  <mat-chip [class]="getEstadoClass(cita.estado)">
+                    {{ getEstadoText(cita.estado) }}
+                  </mat-chip>
+                </div>
+                
+                <mat-divider></mat-divider>
+                
+                <div class="cita-detalles">
+                  <div class="detalle-row">
+                    <mat-icon class="detalle-icon">{{ getIconoPorServicio(cita.servicio) }}</mat-icon>
+                    <div class="detalle-content">
+                      <span class="detalle-label">Servicio</span>
+                      <span class="detalle-value">{{ cita.servicio }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="detalle-row">
+                    <mat-icon class="detalle-icon">badge</mat-icon>
+                    <div class="detalle-content">
+                      <span class="detalle-label">Veterinario</span>
+                      <span class="detalle-value">{{ cita.veterinario }}</span>
+                    </div>
+                  </div>
+                  
+                  @if (cita.notas) {
+                    <div class="detalle-row">
+                      <mat-icon class="detalle-icon">notes</mat-icon>
+                      <div class="detalle-content">
+                        <span class="detalle-label">Notas</span>
+                        <span class="detalle-value">{{ cita.notas }}</span>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+              
+              @if (!$last) {
+                <mat-divider class="cita-divider"></mat-divider>
+              }
+            }
+          </div>
+        }
+      </mat-card-content>
+      
+      <mat-card-actions class="modal-footer">
+        <button mat-raised-button color="primary" (click)="onCerrar()">
+          <mat-icon>close</mat-icon>
+          <span>Cerrar</span>
+        </button>
+      </mat-card-actions>
+    }
+  </mat-card>
+</div>
+

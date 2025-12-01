@@ -1,0 +1,35 @@
+<div class="proximas-citas-container">
+  <h2 class="titulo-seccion">Próximas Citas</h2>
+  
+  <div class="citas-list">
+    @for (cita of proximasCitas(); track cita.id) {
+      <div class="cita-item">
+        <div class="cita-header">
+          <div class="cita-fecha">
+            <span class="fecha">{{ cita.fecha }}</span>
+            <span class="hora">{{ cita.hora }}</span>
+          </div>
+          <span class="estado" [class]="getEstadoClass(cita.estado)">
+            {{ getEstadoText(cita.estado) }}
+          </span>
+        </div>
+        
+        <div class="cita-info">
+          <div class="mascota-info">
+            <span class="mascota-nombre">{{ cita.mascota }}</span>
+            <span class="servicio">{{ cita.servicio }}</span>
+          </div>
+          <div class="veterinario">
+            <span class="vet-nombre">{{ cita.veterinario }}</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  
+  @if (proximasCitas().length === 0) {
+    <div class="sin-citas">
+      <p>No tienes citas programadas</p>
+    </div>
+  }
+</div>

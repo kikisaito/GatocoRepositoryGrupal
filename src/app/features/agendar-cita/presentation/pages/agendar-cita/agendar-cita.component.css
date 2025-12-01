@@ -1,0 +1,154 @@
+.agendar-cita-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reducir el gap para menos espacio entre elementos */
+  padding: 0;
+  will-change: contents;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  padding-right: 0; /* No agregar padding-right para que el scrollbar sea visible */
+  /* Permitir que el contenido determine la altura naturalmente */
+}
+
+.form-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  align-items: start;
+  animation: fadeInSlide 0.2s ease-out;
+  will-change: transform, opacity;
+  contain: layout style paint;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.column-left,
+.column-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 0;
+  will-change: transform, opacity;
+}
+
+.column-left {
+  animation: fadeInUp 0.15s ease-out;
+  contain: layout style paint;
+}
+
+.column-right {
+  animation: fadeInUp 0.15s ease-out 0.03s both;
+  contain: layout style paint;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mascotas-container,
+.servicios-container,
+.veterinarios-container,
+.fecha-container {
+  width: 100%;
+  animation: fadeInSlide 0.2s ease-out;
+  will-change: transform, opacity;
+  contain: layout style paint;
+  box-sizing: border-box;
+}
+
+.mascotas-container ::ng-deep .mat-mdc-card,
+.servicios-container ::ng-deep .mat-mdc-card,
+.veterinarios-container ::ng-deep .mat-mdc-card,
+.fecha-container ::ng-deep .mat-mdc-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+.resumen-container {
+  width: 100%;
+  animation: fadeInScale 0.15s ease-out;
+  will-change: transform, opacity;
+  contain: layout style paint;
+  box-sizing: border-box;
+  padding-bottom: 0; /* No agregar padding extra aquí, ya está en agendar-cita-content */
+  margin-bottom: 0;
+}
+
+.resumen-container ::ng-deep .mat-mdc-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .form-columns {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .column-left,
+  .column-right {
+    animation-delay: 0s;
+  }
+}
+
+@media (max-width: 768px) {
+  .agendar-cita-content {
+    gap: 1.5rem;
+  }
+  
+  .form-columns {
+    gap: 1rem;
+  }
+  
+  .buttons-container {
+    padding: 1rem;
+  }
+}
+

@@ -1,0 +1,91 @@
+.filtro-mascotas-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  animation: fadeInSlide 0.2s ease-out;
+  will-change: transform, opacity;
+  overflow: visible;
+  padding-top: 4px;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.filtro-field {
+  width: 100%;
+  min-width: 180px;
+  max-width: 250px;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field {
+  margin-bottom: 0 !important;
+  overflow: visible !important;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field-subscript-wrapper {
+  margin-top: 0 !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  padding-bottom: 0 !important;
+  padding-top: 4px !important;
+  overflow: visible !important;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field .mat-mdc-form-field-infix {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+  min-height: 56px !important;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field .mat-mdc-form-field-label-wrapper {
+  overflow: visible !important;
+  padding-top: 0 !important;
+  top: 0 !important;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field .mat-mdc-form-field-label {
+  overflow: visible !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field .mat-mdc-form-field-outline {
+  overflow: visible !important;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.loading-container span {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+}
+
+::ng-deep .filtro-mascotas-container .mat-mdc-form-field mat-icon[matPrefix] {
+  color: #3f51b5;
+  margin-right: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filtro-field {
+    max-width: 100%;
+  }
+}

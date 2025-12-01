@@ -1,0 +1,59 @@
+<div class="mascotas-container">
+  <h2 class="titulo-seccion">Mascotas Registradas</h2>
+  
+  @if (isLoading()) {
+    <div class="loading-container">
+      <p>Cargando mascotas...</p>
+    </div>
+  } @else if (error()) {
+    <div class="error-container">
+      <p>{{ error() }}</p>
+    </div>
+  } @else {
+    <div class="mascotas-list">
+      @for (mascota of mascotas(); track mascota.id) {
+        <div class="mascota-item">
+          <div class="mascota-header">
+            <div class="mascota-info-principal">
+              @if (mascota.foto) {
+                <img [src]="mascota.foto" [alt]="mascota.nombre" class="mascota-photo" />
+              } @else {
+                <span class="mascota-icon">{{ getTipoIcon(mascota.especie) }}</span>
+              }
+              <div class="mascota-datos">
+                <span class="mascota-nombre">{{ mascota.nombre }}</span>
+                <span class="mascota-raza">{{ mascota.raza }}</span>
+              </div>
+            </div>
+            <div class="mascota-tipo">
+              <span class="tipo-label">{{ mascota.especie }}</span>
+            </div>
+          </div>
+          
+          <div class="mascota-detalles">
+            @if (mascota.edad) {
+              <div class="detalle-item">
+                <span class="detalle-label">Edad:</span>
+                <span class="detalle-valor">{{ mascota.edad }} años</span>
+              </div>
+            }
+            <div class="detalle-item">
+              <span class="detalle-label">Sexo:</span>
+              <span class="detalle-valor">{{ mascota.sexo }}</span>
+            </div>
+            @if (mascota.fechaNacimiento) {
+              <div class="detalle-item">
+                <span class="detalle-label">Fecha de Nacimiento:</span>
+                <span class="detalle-valor">{{ mascota.fechaNacimiento }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      } @empty {
+        <div class="sin-mascotas">
+          <p>No tienes mascotas registradas</p>
+        </div>
+      }
+    </div>
+  }
+</div>

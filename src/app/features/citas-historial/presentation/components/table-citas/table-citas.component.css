@@ -1,0 +1,274 @@
+.table-citas-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  animation: fadeInSlide 0.2s ease-out;
+  will-change: transform, opacity;
+  contain: layout style paint;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+::ng-deep .table-citas-container .mat-mdc-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .table-citas-container .mat-mdc-card {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.citas-table {
+  width: 100%;
+}
+
+::ng-deep .citas-table .mat-mdc-header-row {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+::ng-deep .citas-table .mat-mdc-header-cell {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+::ng-deep .citas-table .mat-mdc-row {
+  transition: background-color 0.2s ease;
+}
+
+::ng-deep .citas-table .mat-mdc-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+::ng-deep .citas-table .mat-mdc-cell {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.875rem;
+}
+
+.mascota-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.mascota-icon {
+  color: #3f51b5;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.mascota-photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3f51b5;
+  flex-shrink: 0;
+}
+
+.mascota-nombre {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.servicio-cell {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.fecha-cell,
+.hora-cell {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.estado-header {
+  text-align: center;
+}
+
+.estado-cell {
+  text-align: center;
+}
+
+.acciones-header {
+  text-align: center;
+}
+
+.acciones-cell {
+  text-align: center;
+}
+
+.acciones-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.no-acciones {
+  color: rgba(0, 0, 0, 0.38);
+  font-size: 0.875rem;
+}
+
+::ng-deep .estado-cell mat-chip {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  min-height: 24px;
+}
+
+::ng-deep .estado-cell mat-chip.estado-completada {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+::ng-deep .estado-cell mat-chip.estado-pendiente {
+  background-color: rgba(255, 152, 0, 0.1);
+  color: #ff9800;
+}
+
+::ng-deep .estado-cell mat-chip.estado-cancelada {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+.loading-container,
+.error-container,
+.sin-citas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 16px;
+  min-height: 200px;
+}
+
+.loading-container p,
+.error-container p,
+.sin-citas p {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1rem;
+}
+
+.error-container {
+  color: #f44336;
+}
+
+.error-container mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+.sin-citas mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination-info {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-pages {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+::ng-deep .pagination-pages .mat-mdc-mini-fab {
+  width: 36px;
+  height: 36px;
+  font-size: 0.875rem;
+}
+
+::ng-deep .pagination-pages .mat-mdc-mini-fab.active {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.pagination-ellipsis {
+  padding: 0 8px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  ::ng-deep .table-citas-container .mat-mdc-card-header {
+    padding: 16px;
+  }
+
+  ::ng-deep .table-citas-container .mat-mdc-card-content {
+    padding: 16px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  ::ng-deep .citas-table .mat-mdc-header-cell,
+  ::ng-deep .citas-table .mat-mdc-cell {
+    font-size: 0.8125rem;
+    padding: 8px;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .pagination-controls {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

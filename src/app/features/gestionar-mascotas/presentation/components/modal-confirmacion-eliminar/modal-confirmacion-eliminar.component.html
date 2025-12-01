@@ -1,0 +1,26 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Confirmar Eliminación</h3>
+    </div>
+    
+    <div class="modal-body">
+      @if (error) {
+        <div class="error-message">
+          <p>{{ error }}</p>
+        </div>
+      } @else {
+        <p>¿Estás seguro de que deseas eliminar a <strong>{{ mascota?.nombre }}</strong>?</p>
+        <p class="warning-text">Esta acción no se puede deshacer.</p>
+      }
+    </div>
+    
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onCancelar()">Cancelar</button>
+      @if (!error) {
+        <button class="btn-confirm" (click)="onConfirmar()">Eliminar</button>
+      }
+    </div>
+  </div>
+</div>
+

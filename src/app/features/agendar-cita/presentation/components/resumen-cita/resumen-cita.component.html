@@ -1,0 +1,97 @@
+<mat-card class="resumen-cita-container">
+  <mat-card-header>
+    <mat-card-title>Resumen de la Cita</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    @if (mascota && fecha && hora) {
+      <div class="resumen-table">
+        <!-- Columna Izquierda: Mascota -->
+        <div class="resumen-column left-column">
+          <div class="resumen-section">
+            <div class="section-header">
+              <mat-icon>pets</mat-icon>
+              <h3>{{ mascota.nombre }}</h3>
+            </div>
+            <div class="section-content">
+              <div class="info-row">
+                <mat-icon class="info-icon">pets</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Especie</div>
+                  <div class="info-value">{{ mascota.especie || 'No especificada' }}</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <mat-icon class="info-icon">label</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Raza</div>
+                  <div class="info-value">{{ mascota.raza || 'No especificada' }}</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <mat-icon class="info-icon">{{ mascota.sexo === 'macho' ? 'male' : mascota.sexo === 'hembra' ? 'female' : 'help_outline' }}</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Sexo</div>
+                  <div class="info-value">{{ mascota.sexo === 'macho' ? 'Macho' : mascota.sexo === 'hembra' ? 'Hembra' : (mascota.sexo || 'No especificado') }}</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <mat-icon class="info-icon">cake</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Edad</div>
+                  <div class="info-value">{{ getEdad(mascota.fechaNacimiento) }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Datos de la Consulta -->
+        <div class="resumen-column right-column">
+          <div class="resumen-section">
+            <div class="section-header">
+              <mat-icon>event</mat-icon>
+              <h3>Información de la Cita</h3>
+            </div>
+            <div class="section-content">
+              <div class="info-row">
+                <mat-icon class="info-icon">{{ getIconoPorServicio(servicioNombre || '') }}</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Servicio</div>
+                  <div class="info-value">{{ servicioNombre || 'Cargando...' }}</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <mat-icon class="info-icon">badge</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Veterinario</div>
+                  <div class="info-value">{{ veterinarioNombre || 'Cargando...' }}</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <mat-icon class="info-icon">calendar_today</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Fecha</div>
+                  <div class="info-value">{{ getFechaFormateada(fecha) }}</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <mat-icon class="info-icon">schedule</mat-icon>
+                <div class="info-content">
+                  <div class="info-label">Hora</div>
+                  <div class="info-value">{{ getHoraFormateada12h(hora) }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="info-incompleta">
+        <mat-icon>info</mat-icon>
+        <p>No se ha completado toda la información de la cita</p>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>
+

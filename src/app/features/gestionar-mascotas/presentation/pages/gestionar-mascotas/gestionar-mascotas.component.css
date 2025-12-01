@@ -1,0 +1,43 @@
+.gestionar-mascotas-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  padding: 0;
+  padding-bottom: 100px; /* Espacio para el FAB */
+  box-sizing: border-box;
+  will-change: contents;
+}
+
+.gestionar-mascotas-content ::ng-deep app-lista-mascotas-gestion {
+  width: 100%;
+  display: block;
+}
+
+.fab-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fab-button:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gestionar-mascotas-content {
+    gap: 1.5rem;
+    padding-bottom: 80px;
+  }
+
+  .fab-button {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+

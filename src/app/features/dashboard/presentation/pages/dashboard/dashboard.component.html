@@ -1,0 +1,27 @@
+<app-auth-container>
+  <div class="page-header">
+    <app-page-header 
+      [title]="isVeterinario() ? 'Dashboard' : 'Dashboard'" 
+      [subtitle]="isVeterinario() ? 'Aquí están tus citas pendientes' : 'Aquí están tus citas pendientes'">
+    </app-page-header>
+  </div>
+  
+  <div class="dashboard-content">
+    @if (isVeterinario()) {
+      <!-- Dashboard para veterinarios: mostrar citas pendientes -->
+      <app-citas-pendientes></app-citas-pendientes>
+    } @else {
+      <!-- Dashboard para clientes: mostrar estadísticas y citas pendientes -->
+      <app-estadisticas-resumen></app-estadisticas-resumen>
+      <app-citas-pendientes (citasActualizadas)="onCitasActualizadas()"></app-citas-pendientes>
+    }
+  </div>
+</app-auth-container>
+
+<!-- Alerta Personalizada -->
+<app-alerta-personalizada
+  [mensaje]="mensajeAlerta()"
+  [tipo]="tipoAlerta()"
+  [mostrar]="mostrarAlerta()"
+  (cerrar)="cerrarAlerta()">
+</app-alerta-personalizada>

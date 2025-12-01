@@ -1,0 +1,96 @@
+.gestionar-pacientes-content {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loading-container,
+.error-container,
+.sin-pacientes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem;
+  text-align: center;
+  min-height: 200px;
+}
+
+.loading-container mat-spinner {
+  margin: 0 auto;
+}
+
+.error-container mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #f44336;
+}
+
+.sin-pacientes mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.pacientes-table-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pacientes-table {
+  width: 100%;
+}
+
+.paciente-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.paciente-icon {
+  color: #3f51b5;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.paciente-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3f51b5;
+  flex-shrink: 0;
+}
+
+.propietario-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.propietario-icon {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gestionar-pacientes-content {
+    padding: 0;
+    gap: 1rem;
+  }
+
+  .pacientes-table-card {
+    overflow-x: auto;
+  }
+}
+

@@ -1,0 +1,24 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <mat-card class="modal-container" (click)="$event.stopPropagation()">
+    <mat-card-header class="modal-header">
+      <mat-icon class="warning-icon">warning</mat-icon>
+      <mat-card-title class="modal-title">{{ titulo }}</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content class="modal-body">
+      <p class="modal-mensaje">{{ mensaje }}</p>
+    </mat-card-content>
+    
+    <mat-card-actions class="modal-footer">
+      <button mat-button color="basic" (click)="onCancelar()">
+        <mat-icon>close</mat-icon>
+        <span>No, continuar</span>
+      </button>
+      <button mat-raised-button color="warn" (click)="onConfirmar()">
+        <mat-icon>check</mat-icon>
+        <span>Sí, cancelar</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

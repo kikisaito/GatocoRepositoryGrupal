@@ -1,0 +1,259 @@
+.mascotas-container {
+  background: var(--color-bg-primary);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  height: fit-content;
+  border: 1px solid var(--color-gray-200);
+}
+
+.titulo-seccion {
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-bottom: 0.75rem;
+}
+
+
+.mascotas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 500px; /* Altura aumentada para mostrar exactamente 3 mascotas */
+  overflow-y: auto; /* Scroll vertical cuando hay más de 3 mascotas */
+  padding-right: 8px; /* Espacio para el scrollbar */
+}
+
+/* Estilos para el scrollbar personalizado */
+.mascotas-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mascotas-list::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: 3px;
+}
+
+.mascotas-list::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 3px;
+}
+
+.mascotas-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary-dark);
+}
+
+/* Estilos para Firefox */
+.mascotas-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary) var(--color-bg-secondary);
+}
+
+.mascota-item {
+  background: var(--color-bg-secondary);
+  border-radius: 6px;
+  padding: 1.25rem;
+  border-left: 3px solid var(--color-secondary);
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.mascota-item:hover {
+  background: var(--color-bg-primary);
+}
+
+.mascota-item:focus-within {
+  outline: 2px solid #f5576c;
+  outline-offset: 2px;
+}
+
+.mascota-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.mascota-info-principal {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mascota-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.mascota-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-secondary);
+}
+
+.mascota-datos {
+  display: flex;
+  flex-direction: column;
+}
+
+.mascota-nombre {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.25rem;
+}
+
+.mascota-raza {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.estado-salud {
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.estado-excelente {
+  background-color: rgba(5, 150, 105, 0.08);
+  color: var(--color-success);
+  border-color: rgba(5, 150, 105, 0.2);
+}
+
+.estado-bueno {
+  background-color: rgba(2, 132, 199, 0.08);
+  color: var(--color-info);
+  border-color: rgba(2, 132, 199, 0.2);
+}
+
+.estado-regular {
+  background-color: rgba(217, 119, 6, 0.08);
+  color: var(--color-warning);
+  border-color: rgba(217, 119, 6, 0.2);
+}
+
+.estado-atencion {
+  background-color: rgba(220, 38, 38, 0.08);
+  color: var(--color-error);
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.mascota-detalles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-gray-200);
+  padding-top: 1rem;
+}
+
+.detalle-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalle-label {
+  font-size: 0.75rem;
+  color: #7f8c8d;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.detalle-valor {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.sin-mascotas {
+  text-align: center;
+  padding: 3rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.sin-mascotas p {
+  margin: 0;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mascotas-container {
+    padding: 1.5rem;
+  }
+
+  .titulo-seccion {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+
+  .mascotas-list {
+    gap: 1rem;
+    max-height: 450px; /* Altura aumentada para móviles también */
+  }
+
+  .mascota-item {
+    padding: 1rem;
+  }
+
+  .mascota-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .mascota-info-principal {
+    gap: 0.5rem;
+  }
+
+  .mascota-icon {
+    font-size: 1.5rem;
+  }
+
+  .mascota-nombre {
+    font-size: 1rem;
+  }
+
+  .mascota-raza {
+    font-size: 0.8rem;
+  }
+
+  .estado-salud {
+    font-size: 0.7rem;
+  }
+
+  .mascota-detalles {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .detalle-label {
+    font-size: 0.7rem;
+  }
+
+  .detalle-valor {
+    font-size: 0.8rem;
+  }
+
+  .sin-mascotas {
+    padding: 2rem;
+  }
+
+  .sin-mascotas p {
+    font-size: 1rem;
+  }
+}

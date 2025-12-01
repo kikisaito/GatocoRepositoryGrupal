@@ -1,0 +1,87 @@
+<div class="modal-overlay" (click)="onCerrar()">
+  <mat-card class="modal-container" (click)="$event.stopPropagation()">
+    @if (paciente) {
+      <mat-card-header class="modal-header">
+        <div class="header-content">
+          @if (paciente.foto) {
+            <img [src]="paciente.foto" [alt]="paciente.nombre" class="mascota-photo" />
+          } @else {
+            <mat-icon class="mascota-icon">pets</mat-icon>
+          }
+          <mat-card-title class="modal-title">{{ paciente.nombre }}</mat-card-title>
+        </div>
+      </mat-card-header>
+      
+      <mat-card-content class="modal-body">
+        <div class="detalles-list">
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">pets</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Especie</span>
+              <span class="detalle-value">{{ paciente.especie }}</span>
+            </div>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">label</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Raza</span>
+              <span class="detalle-value">{{ paciente.raza || 'No especificada' }}</span>
+            </div>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">{{ paciente.sexo === 'macho' ? 'male' : paciente.sexo === 'hembra' ? 'female' : 'help_outline' }}</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Sexo</span>
+              <span class="detalle-value">{{ paciente.sexo || 'No especificado' }}</span>
+            </div>
+          </div>
+          
+          @if (paciente.fechaNacimiento) {
+            <mat-divider></mat-divider>
+            <div class="detalle-item">
+              <mat-icon class="detalle-icon">calendar_today</mat-icon>
+              <div class="detalle-content">
+                <span class="detalle-label">Fecha de Nacimiento</span>
+                <span class="detalle-value">{{ getFechaFormateada(paciente.fechaNacimiento) }}</span>
+              </div>
+            </div>
+          }
+          
+          <mat-divider></mat-divider>
+          
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">event</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Citas</span>
+              <span class="detalle-value">{{ citasCount }}</span>
+            </div>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <div class="detalle-item">
+            <mat-icon class="detalle-icon">person</mat-icon>
+            <div class="detalle-content">
+              <span class="detalle-label">Propietario</span>
+              <span class="detalle-value">{{ duenoNombre }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions class="modal-footer">
+        <button mat-raised-button color="primary" (click)="onCerrar()">
+          <mat-icon>close</mat-icon>
+          <span>Cerrar</span>
+        </button>
+      </mat-card-actions>
+    }
+  </mat-card>
+</div>
+

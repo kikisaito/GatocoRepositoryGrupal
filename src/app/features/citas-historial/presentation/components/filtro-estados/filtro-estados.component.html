@@ -1,0 +1,12 @@
+<div class="filtro-estados-container">
+  <mat-form-field appearance="outline" class="filtro-field">
+    <mat-label>Filtrar por Estado</mat-label>
+    <mat-icon matPrefix>filter_list</mat-icon>
+    <mat-select [(ngModel)]="estadoSeleccionadoValue" (ngModelChange)="onEstadoChange($event)">
+      @for (estado of estados(); track estado.value) {
+        <mat-option [value]="estado.value">{{ estado.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+

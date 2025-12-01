@@ -1,0 +1,114 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Editar Mascota</h3>
+      <button class="close-button" (click)="onCancelar()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      @if (error) {
+        <div class="error-message">
+          <p>{{ error }}</p>
+        </div>
+      }
+      
+      <form name="editarMascotaForm" (ngSubmit)="onConfirmar()">
+        <!-- Sección de foto -->
+        <div class="form-group photo-section">
+          <label>Foto de la Mascota</label>
+          <div class="photo-container">
+            @if (previewUrl) {
+              <img [src]="previewUrl" alt="Foto de la mascota" class="photo-preview" />
+            } @else {
+              <div class="photo-placeholder">
+                <mat-icon>pets</mat-icon>
+                <span>Sin foto</span>
+              </div>
+            }
+            <div class="photo-actions">
+              <input 
+                type="file" 
+                #fileInput
+                accept="image/*" 
+                (change)="onFileSelected($event)"
+                style="display: none;">
+              <button type="button" class="btn-photo" (click)="fileInput.click()">
+                <mat-icon>photo_camera</mat-icon>
+                {{ selectedFile ? 'Cambiar' : 'Subir' }} Foto
+              </button>
+              @if (selectedFile) {
+                <button type="button" class="btn-upload" (click)="onSubirFoto()">
+                  <mat-icon>cloud_upload</mat-icon>
+                  Guardar Foto
+                </button>
+              }
+              @if (getFotoActual()) {
+                <button type="button" class="btn-delete-photo" (click)="onEliminarFoto()">
+                  <mat-icon>delete</mat-icon>
+                  Eliminar
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Nombre *</label>
+          <input 
+            type="text" 
+            class="input-field" 
+            name="nombre"
+            [(ngModel)]="mascotaData.nombre"
+            placeholder="Nombre de la mascota">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Especie *</label>
+            <input 
+              type="text" 
+              class="input-field" 
+              name="especie"
+              [(ngModel)]="mascotaData.especie"
+              placeholder="Ej: Perro, Gato">
+          </div>
+          <div class="form-group">
+            <label>Raza *</label>
+            <input 
+              type="text" 
+              class="input-field" 
+              name="raza"
+              [(ngModel)]="mascotaData.raza"
+              placeholder="Ej: Golden Retriever">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Fecha de Nacimiento *</label>
+            <input 
+              type="date" 
+              class="input-field" 
+              name="fechaNacimiento"
+              [(ngModel)]="mascotaData.fechaNacimiento"
+              [max]="getToday()">
+          </div>
+          <div class="form-group">
+            <label>Sexo *</label>
+            <select class="input-field" name="sexo" [(ngModel)]="mascotaData.sexo">
+              @for (opcion of opcionesSexo; track opcion.value) {
+                <option [value]="opcion.value">{{ opcion.label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onCancelar()">Cancelar</button>
+      <button class="btn-confirm" (click)="onConfirmar()" [disabled]="!esFormValid()">Guardar</button>
+    </div>
+  </div>
+</div>
+

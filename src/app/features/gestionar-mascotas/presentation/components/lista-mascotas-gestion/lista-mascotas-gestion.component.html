@@ -1,0 +1,71 @@
+<mat-card class="lista-mascotas-container">
+  <mat-card-header>
+    <mat-card-title>Mis Mascotas</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    @if (isLoading) {
+      <div class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Cargando mascotas...</p>
+      </div>
+    } @else if (error) {
+      <div class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ error }}</p>
+      </div>
+    } @else {
+      <mat-list class="mascotas-list">
+        @for (mascota of mascotas; track mascota.id) {
+          <mat-list-item class="mascota-item">
+            <div class="mascota-content">
+              <div class="mascota-info">
+                @if (mascota.foto) {
+                  <img [src]="mascota.foto" [alt]="mascota.nombre" class="mascota-photo" />
+                } @else {
+                  <mat-icon class="mascota-icon">pets</mat-icon>
+                }
+                <div class="mascota-datos">
+                  <h4 class="mascota-nombre">{{ mascota.nombre }}</h4>
+                  <p class="mascota-details">{{ mascota.especie }} - {{ mascota.raza || 'No especificada' }}</p>
+                  @if (mascota.sexo) {
+                    <p class="mascota-sexo">Sexo: {{ mascota.sexo }}</p>
+                  }
+                  @if (mascota.fechaNacimiento) {
+                    <p class="mascota-fecha">{{ getFechaFormateada(mascota.fechaNacimiento) }}</p>
+                  }
+                </div>
+              </div>
+              <div class="mascota-actions">
+                <button mat-icon-button [matMenuTriggerFor]="menu" (click)="onAbrirMenu(mascota, $event)" title="Opciones">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-list-item>
+        }
+        @if (mascotas.length === 0) {
+          <div class="no-mascotas">
+            <mat-icon>pets</mat-icon>
+            <p>No tienes mascotas registradas</p>
+          </div>
+        }
+      </mat-list>
+      
+      <!-- Menú desplegable compartido -->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onIniciarEdicion($event)">
+          <mat-icon>edit</mat-icon>
+          <span>Editar</span>
+        </button>
+        @if (!tieneCitas(mascotaSeleccionada?.id || 0)) {
+          <button mat-menu-item (click)="onEliminar($event)">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        }
+      </mat-menu>
+    }
+  </mat-card-content>
+</mat-card>
+

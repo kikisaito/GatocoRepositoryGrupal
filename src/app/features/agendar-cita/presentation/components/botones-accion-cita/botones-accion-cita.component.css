@@ -1,0 +1,52 @@
+.botones-accion-container {
+  padding: 0;
+  width: 100%;
+}
+
+.botones-section {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 24px 0;
+}
+
+.btn-atras,
+.btn-siguiente,
+.btn-cancelar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.btn-siguiente mat-icon {
+  margin-left: 4px;
+}
+
+.btn-atras mat-icon {
+  margin-right: 4px;
+}
+
+.btn-cancelar mat-icon {
+  margin-right: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .botones-section {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 0;
+  }
+
+  .btn-atras,
+  .btn-siguiente,
+  .btn-cancelar {
+    width: 100%;
+    justify-content: center;
+  }
+}

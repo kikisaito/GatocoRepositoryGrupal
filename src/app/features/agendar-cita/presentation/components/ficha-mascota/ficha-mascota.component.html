@@ -1,0 +1,48 @@
+@if (mascota) {
+  <div class="ficha-mascota-container">
+    <div class="ficha-header">
+      @if (mascota.foto) {
+        <img [src]="mascota.foto" [alt]="mascota.nombre" class="mascota-photo" />
+      } @else {
+        <span class="mascota-icon">{{ getTipoIcon(mascota.especie) }}</span>
+      }
+      <h3 class="mascota-nombre">{{ mascota.nombre }}</h3>
+    </div>
+    
+    <div class="ficha-details">
+      <div class="detail-item">
+        <span class="detail-label">Especie:</span>
+        <span class="detail-value">{{ mascota.especie }}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">Raza:</span>
+        <span class="detail-value">{{ mascota.raza }}</span>
+      </div>
+      
+      @if (mascota.edad) {
+        <div class="detail-item">
+          <span class="detail-label">Edad:</span>
+          <span class="detail-value">{{ mascota.edad }} años</span>
+        </div>
+      }
+      
+      <div class="detail-item">
+        <span class="detail-label">Sexo:</span>
+        <span class="detail-value">{{ mascota.sexo }}</span>
+      </div>
+      
+      @if (mascota.fechaNacimiento) {
+        <div class="detail-item">
+          <span class="detail-label">Fecha de Nacimiento:</span>
+          <span class="detail-value">{{ mascota.fechaNacimiento }}</span>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="no-mascota-selected">
+    <p>Por favor, selecciona una mascota</p>
+  </div>
+}
+

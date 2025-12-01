@@ -1,0 +1,48 @@
+<mat-card class="listado-mascotas-container">
+  <mat-card-header>
+    <mat-card-title>Seleccionar Mascota</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    @if (isLoading()) {
+      <div class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Cargando mascotas...</p>
+      </div>
+    } @else if (error()) {
+      <div class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <p>{{ error() }}</p>
+      </div>
+    } @else {
+      <mat-list class="mascotas-list">
+        @for (mascota of mascotas(); track mascota.id) {
+          <mat-list-item 
+            class="mascota-item"
+            (click)="seleccionarMascota(mascota)">
+            <div class="mascota-content">
+              <div class="mascota-info">
+                @if (mascota.foto) {
+                  <img [src]="mascota.foto" [alt]="mascota.nombre" class="mascota-photo" />
+                } @else {
+                  <mat-icon class="mascota-icon">pets</mat-icon>
+                }
+                <div class="mascota-datos">
+                  <h4 class="mascota-nombre">{{ mascota.nombre }}</h4>
+                  <p class="mascota-details">{{ mascota.especie }} - {{ mascota.raza }}</p>
+                </div>
+              </div>
+            </div>
+          </mat-list-item>
+        }
+        @if (mascotas().length === 0) {
+          <div class="no-mascotas">
+            <mat-icon>pets</mat-icon>
+            <p>No tienes mascotas registradas</p>
+          </div>
+        }
+      </mat-list>
+    }
+  </mat-card-content>
+</mat-card>
+

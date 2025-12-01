@@ -1,0 +1,16 @@
+@if (mostrar) {
+  <div class="alerta-overlay" (click)="onCerrar()">
+    <mat-card class="alerta-container" [class]="tipo" (click)="$event.stopPropagation()">
+      <div class="alerta-content">
+        <mat-icon class="alerta-icon" [class]="'icon-' + tipo">{{ getIconoPorTipo() }}</mat-icon>
+        <div class="alerta-mensaje">
+          <p>{{ mensaje }}</p>
+        </div>
+        <button mat-icon-button class="alerta-close" (click)="onCerrar()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+}
+

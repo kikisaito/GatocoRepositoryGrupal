@@ -1,0 +1,44 @@
+<mat-card class="seleccionar-veterinario-container">
+  <mat-card-header>
+    <mat-card-title>Seleccionar el Veterinario</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    @if (isLoading) {
+      <div class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Cargando veterinarios...</p>
+      </div>
+    } @else {
+      <mat-radio-group 
+        class="veterinarios-list"
+        [(ngModel)]="veterinarioSeleccionado"
+        (change)="onVeterinarioChange(veterinarioSeleccionado!)">
+        @for (veterinario of veterinarios; track veterinario.id) {
+          <mat-radio-button 
+            class="veterinario-option"
+            [value]="veterinario.id"
+            [checked]="veterinarioSeleccionado === veterinario.id">
+            <div class="veterinario-content">
+              <mat-icon class="veterinario-icon">badge</mat-icon>
+              <div class="veterinario-info">
+                <span class="veterinario-name">{{ veterinario.fullName }}</span>
+                @if (veterinario.phone) {
+                  <span class="veterinario-phone">{{ veterinario.phone }}</span>
+                }
+              </div>
+            </div>
+          </mat-radio-button>
+        }
+        @if (veterinarios.length === 0) {
+          <div class="no-veterinarios">
+            <mat-icon>person_off</mat-icon>
+            <p>No hay veterinarios disponibles</p>
+          </div>
+        }
+      </mat-radio-group>
+    }
+  </mat-card-content>
+</mat-card>
+
+

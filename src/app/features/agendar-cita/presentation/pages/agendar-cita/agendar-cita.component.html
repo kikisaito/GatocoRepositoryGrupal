@@ -1,0 +1,119 @@
+<app-auth-container>
+  <div class="page-header">
+    <app-page-header 
+      [title]="pasoActual() === 1 ? 'Agendar Cita' : pasoActual() === 2 ? 'Seleccionar Servicio' : pasoActual() === 3 ? 'Seleccionar Veterinario' : pasoActual() === 4 ? 'Seleccionar Fecha' : 'Confirmar Cita'"
+      [subtitle]="pasoActual() === 1 ? 'Selecciona la mascota para la que deseas agendar la cita.' : pasoActual() === 2 ? 'Selecciona el tipo de servicio que necesitas para tu cita.' : pasoActual() === 3 ? 'Selecciona el veterinario con el que deseas agendar la cita.' : pasoActual() === 4 ? 'Selecciona la fecha y hora para tu cita.' : 'Revisa los detalles y confirma tu cita.'">
+    </app-page-header>
+  </div>
+
+  <div class="agendar-cita-content">
+    <!-- Paso 1: Solo seleccionar mascota -->
+    @if (pasoActual() === 1) {
+      <div class="mascotas-container">
+        <app-listado-mascotas (mascotaSeleccionadaChange)="onMascotaSeleccionada($event)"></app-listado-mascotas>
+      </div>
+    }
+    
+    <!-- Paso 2: Seleccionar servicio -->
+    @if (pasoActual() === 2) {
+      <div class="servicios-container">
+        <app-seleccionar-servicio (servicioSeleccionadoChange)="onServicioSeleccionado($event)"></app-seleccionar-servicio>
+        <div class="buttons-wrapper">
+          <app-botones-accion-cita 
+            [mostrarAtras]="true"
+            [textoSiguiente]="'Siguiente'"
+            (siguiente)="onSiguiente()"
+            (cancelar)="onCancelar()"
+            (atras)="onAtras()">
+          </app-botones-accion-cita>
+        </div>
+      </div>
+    }
+    
+    <!-- Paso 3: Seleccionar veterinario -->
+    @if (pasoActual() === 3) {
+      <div class="veterinarios-container">
+        <app-seleccionar-veterinario (veterinarioSeleccionadoChange)="onVeterinarioSeleccionado($event)"></app-seleccionar-veterinario>
+        <div class="buttons-wrapper">
+          <app-botones-accion-cita 
+            [mostrarAtras]="true"
+            [textoSiguiente]="'Siguiente'"
+            (siguiente)="onSiguiente()"
+            (cancelar)="onCancelar()"
+            (atras)="onAtras()">
+          </app-botones-accion-cita>
+        </div>
+      </div>
+    }
+    
+    <!-- Paso 4: Seleccionar fecha y hora -->
+    @if (pasoActual() === 4) {
+      <div class="fecha-container">
+        <app-seleccionar-fecha
+          (fechaSeleccionadaChange)="onFechaRecibida($event)"
+          (horaSeleccionadaChange)="onHoraRecibida($event)">
+        </app-seleccionar-fecha>
+        <div class="buttons-wrapper">
+          <app-botones-accion-cita 
+            [mostrarAtras]="true"
+            [textoSiguiente]="'Siguiente'"
+            (siguiente)="onSiguiente()"
+            (cancelar)="onCancelar()"
+            (atras)="onAtras()">
+          </app-botones-accion-cita>
+        </div>
+      </div>
+    }
+    
+    <!-- Paso 5: Resumen y confirmación -->
+    @if (pasoActual() === 5) {
+      <div class="resumen-container">
+        <app-resumen-cita
+          [mascota]="mascotaSeleccionada"
+          [fecha]="fechaSeleccionada"
+          [hora]="horaSeleccionada"
+          [servicioId]="servicioSeleccionado"
+          [veterinarioId]="veterinarioSeleccionado">
+        </app-resumen-cita>
+        <div class="buttons-wrapper">
+          <app-botones-accion-cita 
+            [mostrarAtras]="true"
+            [textoSiguiente]="'Confirmar Cita'"
+            (siguiente)="onSiguiente()"
+            (cancelar)="onCancelar()"
+            (atras)="onAtras()">
+          </app-botones-accion-cita>
+        </div>
+      </div>
+    }
+  </div>
+</app-auth-container>
+
+<!-- Modal de Detalles de Mascota -->
+@if (mostrarModalDetallesMascota()) {
+  <app-modal-detalles-mascota
+    [mascota]="mascotaParaModal"
+    (confirmar)="onConfirmarMascota()"
+    (cancelar)="onCancelarMascota()">
+  </app-modal-detalles-mascota>
+}
+
+<!-- Modal de Confirmación -->
+@if (mostrarModalConfirmacion()) {
+  <app-modal-confirmacion
+    titulo="¿Cancelar cita?"
+    mensaje="¿Estás seguro de que deseas cancelar? Todos los datos ingresados se perderán."
+    (confirmar)="confirmarCancelacion()"
+    (cancelar)="cancelarConfirmacion()">
+  </app-modal-confirmacion>
+}
+
+<!-- Alerta Personalizada -->
+<app-alerta-personalizada
+  [mensaje]="mensajeAlerta()"
+  [tipo]="tipoAlerta()"
+  [mostrar]="mostrarAlerta()"
+  (cerrar)="cerrarAlerta()">
+</app-alerta-personalizada>
+
+
