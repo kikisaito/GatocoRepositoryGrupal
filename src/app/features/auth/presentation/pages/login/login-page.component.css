@@ -1,0 +1,119 @@
+/* Estilos para la página de login */
+
+.page-title {
+  text-align: center;
+  color: var(--color-primary);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.login-content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 3vw, 3rem) clamp(1rem, 3vw, 2rem);
+  padding-top: 100px; /* Espacio para el header */
+  box-sizing: border-box;
+}
+
+/* Cuando la pantalla es muy pequeña, ajustar el centrado y padding */
+@media (max-width: 480px) {
+  .login-content {
+    padding: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 70px !important;
+    padding-bottom: 2rem !important;
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    order: 1; /* Aparecer primero en el scroll */
+  }
+}
+
+/* Cuando el slide está presente en el HomeContainer */
+:host-context(app-public-container) app-slide + * .login-content,
+:host-context(.public-container:has(app-slide)) .login-content {
+  width: 50%;
+  margin-right: 50%;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  :host-context(app-public-container) app-slide + * .login-content,
+  :host-context(.public-container:has(app-slide)) .login-content {
+    width: 40%;
+    margin-right: 60%;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  :host-context(app-public-container) app-slide + * .login-content,
+  :host-context(.public-container:has(app-slide)) .login-content {
+    width: 30%;
+    margin-right: 70%;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  :host-context(app-public-container) app-slide + * .login-content,
+  :host-context(.public-container:has(app-slide)) .login-content {
+    width: 0;
+    margin-right: 100%;
+  }
+}
+
+.auth-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-link p {
+  color: var(--color-text-secondary);
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  margin: 0;
+}
+
+.auth-link a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.auth-link a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .login-content {
+    padding: 2rem 1.5rem;
+    padding-top: 100px;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .login-content {
+    padding: 1rem;
+    padding-top: 80px;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .login-content {
+    padding: 0.75rem;
+    padding-top: 70px;
+  }
+}

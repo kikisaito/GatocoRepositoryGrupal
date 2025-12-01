@@ -1,0 +1,172 @@
+/* Estilos para la página de register */
+
+.page-title {
+  text-align: center;
+  color: #2c5aa0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.register-content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 3vw, 3rem) clamp(1rem, 3vw, 2rem);
+  padding-top: 100px; /* Espacio para el header */
+  box-sizing: border-box; /* Asegurar que el padding se incluya en el cálculo de altura */
+  animation: fadeInContent 0.4s ease-in-out 0.2s both; /* Mucho más rápido: 0.4s duración y 0.2s delay */
+  transition: all 0.3s ease;
+  margin-left: 0;
+  position: relative;
+  z-index: 1001; /* Mayor que el slide para que se vea encima */
+}
+
+/* Cuando la pantalla es muy pequeña, ajustar el centrado y padding */
+@media (max-width: 480px) {
+  /* Override base */
+  .register-content {
+    padding: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 70px !important;
+    padding-bottom: 2rem !important;
+    background: transparent !important;
+    position: relative !important;
+    left: 0 !important;
+    right: auto !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    justify-content: flex-start !important;
+    order: 1; /* Aparecer primero en el scroll */
+  }
+
+  /* Override todos los estilos del slide en mobile */
+  app-public-container:has(app-slide) .register-content {
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Cuando el slide está presente en el HomeContainer - Register tiene el contenido a la derecha */
+app-public-container:has(app-slide) .register-content {
+  width: 50% !important;
+  position: fixed !important;
+  right: 0 !important;
+  left: 50% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  app-public-container:has(app-slide) .register-content {
+    width: 40% !important;
+    left: 60% !important;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  app-public-container:has(app-slide) .register-content {
+    width: 30% !important;
+    left: 70% !important;
+  }
+}
+
+/* Responsive para móviles pequeños - override completo de todos los estilos de slide */
+@media (max-width: 480px) {
+  app-public-container:has(app-slide) .register-content {
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Animación de salida cuando se navega desde register */
+.register-content.exiting {
+  animation: fadeOutContent 0.3s ease-in-out both; /* Mucho más rápida */
+}
+
+.auth-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-link p {
+  color: #7f8c8d;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  margin: 0;
+}
+
+.auth-link a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.auth-link a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .register-content {
+    padding: 2rem 1.5rem;
+    padding-top: 100px;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .register-content {
+    padding: 1rem;
+    padding-top: 80px;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .register-content {
+    padding: 0.75rem;
+    padding-top: 70px;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutContent {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}

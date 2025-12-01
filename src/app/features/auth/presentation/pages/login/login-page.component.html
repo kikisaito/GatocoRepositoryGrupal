@@ -1,0 +1,22 @@
+<app-public-container>
+  <div class="login-content">
+    <h1 class="page-title">Iniciar Sesión</h1>
+    <app-auth-form
+      formType="login"
+      [fields]="loginFields"
+      [isLoading]="isLoading()"
+      [error]="error() || ''"
+      (formSubmit)="onFormSubmit($event)">
+      
+      <app-auth-button
+        buttonType="login"
+        [isLoading]="isLoading()"
+        type="submit">
+      </app-auth-button>
+
+      <div class="auth-link">
+        <p>¿No tienes cuenta? <a href="javascript:void(0)" (click)="onGoToRegister()">Regístrate aquí</a></p>
+      </div>
+    </app-auth-form>
+  </div>
+</app-public-container>

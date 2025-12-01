@@ -1,0 +1,31 @@
+<form class="auth-form-container" (ngSubmit)="onSubmit()">
+    <div class="form-fields" [class.login-form]="isLoginForm" [class.register-form]="!isLoginForm">
+        @for (field of fields; track field.name) {
+        <div class="form-group" [attr.data-field]="field.name">
+            <label [for]="field.name">{{ field.label }}</label>
+            @if (field.type === 'select') {
+            <select [id]="field.name" [name]="field.name" [required]="field.required" [disabled]="isLoading"
+                [ngModel]="formValues[field.name] || ''" (ngModelChange)="onInputChange(field.name, $event)">
+                <option value="" disabled selected hidden>{{ field.placeholder }}</option>
+                @for (option of field.options; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+                }
+            </select>
+            } @else {
+            <input [type]="field.type" [id]="field.name" [name]="field.name" [placeholder]="field.placeholder"
+                [required]="field.required" [disabled]="isLoading" [value]="formValues[field.name]"
+                (input)="onInputChange(field.name, $any($event.target).value)">
+            }
+        </div>
+        }
+
+        <div class="error-message" *ngIf="error">
+            <p>{{ error }}</p>
+        </div>
+    </div>
+
+    <!-- Contenido proyectado fuera del grid -->
+    <div class="form-actions">
+        <ng-content></ng-content>
+    </div>
+</form>
