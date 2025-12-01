@@ -102,6 +102,23 @@ export class ModalHistorialCitasComponent {
     return 'medical_services';
   }
 
+  isJson(str: string): boolean {
+    try {
+      const result = JSON.parse(str);
+      return (typeof result === 'object' && result !== null);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  getNotasParsed(notas: string): any {
+    try {
+      return JSON.parse(notas);
+    } catch (e) {
+      return null;
+    }
+  }
+
   onCerrar(): void {
     this.cerrar.emit();
   }
