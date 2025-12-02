@@ -1,6 +1,7 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://44.221.66.236:8080/api/v1', // Apunta a tu backend local
+    // Asegúrate de que termine con :8080 si ese es tu puerto
+    apiUrl: 'http://44.195.177.19:8080',
     apiVersion: 'v1',
     appName: 'GatoCo',
     appVersion: '1.0.0'
